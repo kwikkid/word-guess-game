@@ -8,58 +8,78 @@
 // var wins = 0;
 // var remaining = 15;
 // var guesses = 0;
-window.onload=function(){
-
-	var words = [
+var building;
+var words = [
 		"alhambra",
 		"lourve",
 		"parthenon"];
 
-	var building = words[Math.floor(Math.random() * words.length)];
+var pastGuesses = [];
+var guesses = 10;
+var userGuess;
+var answer;
+var answerArray = [];
+
+function start()
+{
+	
+	building = words[Math.floor(Math.random() * words.length)];
 
 	console.log(building);
 
-	var answerArray = [];
 
+	for (i = 0; i < building.length; i++)
+	{
+		answerArray[i] = "_";
+	}
 
-		for (i = 0; i < building.length; i++){
-			answerArray[i] = "_";}
+		answer = answerArray.join(" ");
+		console.log("answer:", answer)
+		//var wordgame = document.getElementById("wordgame");
+		//wordgame.textContent = answer;
+		document.getElementById("wordDashes").innerHTML = answer;
 
-		var answer = answerArray.join(" ");
-		var wordgame = document.getElementById("wordgame");
-		wordgame.textContent = answer;
-		// console.log(wordgame);
-		// alert(answer);
-		// console.log(wordgame);
-		// wordgame.textContent = answer;
-				
-		// var meow = document.getElementById("wins");		
-			
+}
+
+start();
+
+document.onkeyup = function(event) {
+		 userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+		pastGuesses.push(userGuess);
+		console.log(pastGuesses);
+		console.log(userGuess);
 
 	
-
-		document.onkeyup = function(event) {
-			var userGuess = String.fromCharCode(event.keyCode).toLowerCase()
-			console.log(userGuess);
-
-	// var pastGuesses = [];
-		
-	// 		pastGuesses[j] = userGuess.push();
-	
-
-	var userChoiceText = document.getElementById("userGuess");
-	console.log(userChoiceText);
-	userChoiceText.textContent =  "Your Guesses: " + userGuess;}
-
-	// var pastGuesses = [];
-	// for (j = 0; i < 5; i++){
-	// 	pastGuesses[j] = userGuess;
-	// 	console.log(pastGuesses);
-	// }
+		var userChoiceText = document.getElementById("userGuess");
+		console.log(userChoiceText);
+		userChoiceText.textContent =  "Your Guesses: " + pastGuesses;
+		//guesses--;
+			if (guesses === 0){
+				checkWin();
+			} 
+			else{
+				compare(userGuess);
+			}  
+}
 
 
-// var wordgame = document.getElementById("wordgame");
+function checkWin(){
 
+}
 
+function compare(userGuess){
+	console.log("random word: ",building);
+	console.log("userGuess: ", userGuess);
+	for(var i=0; i<building.length; i++){
+		console.log("inside the loop")
+		if(building[i] === userGuess){
+			console.log("inside the if");
+			answerArray[i] = userGuess;
+			document.getElementById("wordDashes").innerHTML = answerArray[i];
+		}
+		else{
+			guesses--;
+		}
+	}
 
 }
