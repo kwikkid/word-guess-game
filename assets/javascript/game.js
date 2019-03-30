@@ -53,7 +53,7 @@ document.onkeyup = function(event) {
 		var userChoiceText = document.getElementById("userGuess");
 		console.log(userChoiceText);
 		userChoiceText.textContent =  "Your Guesses: " + pastGuesses;
-		//guesses--;
+		
 			if (guesses === 0){
 				checkWin();
 			} 
@@ -75,11 +75,10 @@ function compare(userGuess){
 		if(building[i] === userGuess){
 			console.log("inside the if");
 			answerArray[i] = userGuess;
-			document.getElementById("wordDashes").innerHTML = answerArray[i];
+			document.getElementById("wordDashes").innerHTML = answerArray;
 		}
 		else{
 			guesses--;
 		}
 	}
-
 }
