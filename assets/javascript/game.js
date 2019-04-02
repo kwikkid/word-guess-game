@@ -17,7 +17,6 @@ function start()
 	building = words[Math.floor(Math.random() * words.length)];
 
 	console.log(building);
-	console.log('guesses ',guesses);
 
 
 
@@ -67,18 +66,25 @@ compare();
 };
 
 
-function compare(userGuess, guesses){
+function compare(){
+	var isFound = false;
 	console.log('guesses within compare function ',guesses);
 	guessesText.textContent = ("numer of guesses remaining:" + guesses);
 	console.log("random word: ",building);
 	console.log("userGuess: ", userGuess);
 	for (var i = 0; i < building.length; i++){
 		if(building[i] === userGuess){
+			isFound = true;
 			answerArray[i] = userGuess;
+			console.log('inside my for loop', guesses);
 			document.getElementById("wordDashes").innerHTML = answerArray;
 		}
-		else{
-			guesses--;
-		}
 	}
+	if (isFound === false) {
+		guesses--
+	}
+		// else{
+		// 	guesses--;
+		// }
+	
 }
