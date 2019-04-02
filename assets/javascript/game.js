@@ -45,25 +45,33 @@ document.onkeyup = function(event) {
 		var userChoiceText = document.getElementById("userGuess");
 		console.log(userChoiceText);
 		userChoiceText.textContent =  "Your Guesses: " + pastGuesses;
-		
-// 			if (guesses === 0){
-// 				checkWin();
-// 			} 
-// 			else{
-// 				compare(userGuess);
-// 			}  
-// }
+		console.log('guesses on keyup ',guesses)
+			if (guesses === 0){
+				checkWin();
+			} 
+			else{
+				compare();
+			}  
+}
 
+// also should check win even if guesses != 0
+function checkWin(){
+	var isWinner = false;
+	for (var i = 0; i < building.length; i++){
+		if (answerArray === building[i]){
+			isWinner = true;
+			alert('u win')
+		}
+	}	
+	
+}		
 
-// function checkWin(){
-
-
-// }
+	
 compare();
 
 
 
-};
+
 
 
 function compare(){
@@ -83,8 +91,7 @@ function compare(){
 	if (isFound === false) {
 		guesses--
 	}
-		// else{
-		// 	guesses--;
-		// }
+		
 	
 }
+
