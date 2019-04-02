@@ -1,13 +1,3 @@
-//Alert - After pressing a key, does user want to play//
-
-
-//If yes pick a random word//
-//If no, do nothing//
-//on document key up, and lowercase, check that the letter matches//
-//display the users guess//
-// var wins = 0;
-// var remaining = 15;
-// var guesses = 0;
 var building;
 var words = [
 		"alhambra",
@@ -19,6 +9,7 @@ var guesses = 10;
 var userGuess;
 var answer;
 var answerArray = [];
+var guessesText = document.getElementById("guessesText");
 
 function start()
 {
@@ -26,6 +17,8 @@ function start()
 	building = words[Math.floor(Math.random() * words.length)];
 
 	console.log(building);
+	console.log('guesses ',guesses);
+
 
 
 	for (i = 0; i < building.length; i++)
@@ -44,7 +37,7 @@ function start()
 start();
 
 document.onkeyup = function(event) {
-		 userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+		userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 		pastGuesses.push(userGuess);
 		console.log(pastGuesses);
 		console.log(userGuess);
@@ -54,26 +47,33 @@ document.onkeyup = function(event) {
 		console.log(userChoiceText);
 		userChoiceText.textContent =  "Your Guesses: " + pastGuesses;
 		
-			if (guesses === 0){
-				checkWin();
-			} 
-			else{
-				compare(userGuess);
-			}  
-}
+// 			if (guesses === 0){
+// 				checkWin();
+// 			} 
+// 			else{
+// 				compare(userGuess);
+// 			}  
+// }
 
 
-function checkWin(){
+// function checkWin(){
 
-}
 
-function compare(userGuess){
+// }
+compare();
+
+
+
+};
+
+
+function compare(userGuess, guesses){
+	console.log('guesses within compare function ',guesses);
+	guessesText.textContent = ("numer of guesses remaining:" + guesses);
 	console.log("random word: ",building);
 	console.log("userGuess: ", userGuess);
-	for(var i=0; i<building.length; i++){
-		console.log("inside the loop")
+	for (var i = 0; i < building.length; i++){
 		if(building[i] === userGuess){
-			console.log("inside the if");
 			answerArray[i] = userGuess;
 			document.getElementById("wordDashes").innerHTML = answerArray;
 		}
