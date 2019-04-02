@@ -49,7 +49,7 @@ document.onkeyup = function(event) {
 		compare();
 		console.log('answer onkeyup',answer);
 			if (guesses > 0){
-				checkWin(answer);
+				checkWin();
 			} 
 			// else{
 			// 	compare();
@@ -57,17 +57,15 @@ document.onkeyup = function(event) {
 }
 
 // also should check win even if guesses != 0
-function checkWin(answer){
+function checkWin(){
+	answer = answerArray.join("");
 	console.log('answer checkwin', answer);
 	console.log('building ',building)
 	// var isWinner = false;
 	if (answer === building) {
 		alert ("you win");
 	}
-	// 		isWinner = true;
-	// 		alert('u win')
-	// 	}
-	// }	
+
 	
 }		
 
